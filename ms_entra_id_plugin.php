@@ -6,7 +6,7 @@ use Blesta\Core\Util\Common\Traits\Container;
  * Microsoft Entra ID plugin handler
  * @link https://speed-cloud.fr SPEED CLOUD
  */
-class BlestaAADPlugin extends Plugin
+class MsEntraIdPlugin extends Plugin
 {
     // Load traits
     use Container;
