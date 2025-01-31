@@ -1,5 +1,5 @@
 <?php
-class BlestaAAD extends Plugin
+class BlestaAADPlugin extends Plugin
 {
 
     /**
