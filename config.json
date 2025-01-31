@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "Microsoft Entra ID",
+    "description": "",
+    "authors": [
+        {
+            "name": "SPEED CLOUD",
+            "url": "https://speed-cloud.fr"
+        }
+    ]
+}
