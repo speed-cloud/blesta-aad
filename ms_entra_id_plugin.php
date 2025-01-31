@@ -47,7 +47,7 @@ class MsEntraIdPlugin extends Plugin
      */
     public function on_admin_login($event)
     {
-        return ['head' => '<!-- This is just a test. -->'];
+        $this->logger->log($event);
     }
     
 }
