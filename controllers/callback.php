@@ -33,6 +33,13 @@ class Callback extends AppController
             'redirect_uri' => $this->base_url . 'plugin/ms_entra_id/callback'
         ]));
 
+        $token = json_decode(curl_exec($ch), true)['access_token'];
+        curl_close($ch);
+        
+        $ch = curl_init('https://graph.microsoft.com/oidc/userinfo');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADERS, ['Authorization' => 'Bearer ' . $token]);
+
         $response = json_decode(curl_exec($ch), true);
         curl_close($ch);
         var_dump($response);
