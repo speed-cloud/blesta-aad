@@ -1,0 +1,44 @@
+
+        <?php
+        $this->Form->create();
+        ?>
+        <div class="inner">
+            <div class="pad">
+                <ul>
+                    <li>
+                        <?php
+                        $this->Form->fieldText('tenant_id', '', ['id' => 'tenant_id']);
+                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.tenant_id', true), 'tenant_id', ['class' => 'inline']);
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->fieldText('client_id', '', ['id' => 'client_id']);
+                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.client_id', true), 'client_id', ['class' => 'client_id']);
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->fieldCheckbox('client_secret', '', ['id' => 'client_secret']);
+                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.client_secret', true), 'client_secret', ['class' => 'inline']);
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        $this->Form->fieldCheckbox('replace_admin_login', 'false', (($replace_admin_login ?? 'false') == 'true'), ['id' => 'replace_admin_login']);
+                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.replace_admin_login', true), 'replace_admin_login', ['class' => 'replace_admin_login']);
+                        ?>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="button_row">
+                <?php
+                $this->Form->fieldSubmit('save', $this->_('MsEntraIdManagePlugin.index.save', true), ['class' => 'btn btn-primary pull-right']);
+                ?>
+            </div>
+        </div>
+        <?php
+        $this->Form->end();
+        $this->Widget->end();
+        ?>
