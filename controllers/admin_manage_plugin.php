@@ -21,14 +21,7 @@ class AdminManagePlugin extends AppController
         $this->plugin_id = $this->get[0] ?? null;
 
         // Set the page title
-        $this->parent->structure->set(
-            'page_title',
-            Language::_(
-                'MsEntraIdManagePlugin.'
-                . Loader::fromCamelCase($this->action ? $this->action : 'index' . '.page_title'),
-                true
-            )
-        );
+        $this->parent->structure->set('page_title', Language::_('MsEntraId.name', true));
     }
 
     /**
