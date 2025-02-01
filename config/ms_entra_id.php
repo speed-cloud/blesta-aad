@@ -1,5 +1,5 @@
 <?php
-Configure::set('MsEntraId.tenant_id', '');
-Configure::set('MsEntraId.client_id', '');
-Configure::set('MsEntraId.client_secret', '');
-Configure::set('MsEntraId.force_sso', false);
+Configure::set('MsEntraIdPlugin.tenant_id', '');
+Configure::set('MsEntraIdPlugin.client_id', '');
+Configure::set('MsEntraIdPlugin.client_secret', '');
+Configure::set('MsEntraIdPlugin.force_sso', false);
