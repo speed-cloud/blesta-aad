@@ -46,14 +46,14 @@ class AdminManagePlugin extends AppController
         $tenant_id = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.tenant_id');
         $client_id = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.client_id');
         $client_secret = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.client_secret');
-        $replace_admin_login = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login');
+        $replace_admin_login = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page');
 
         $vars = [
             'plugin_id' => $this->plugin_id,
             'tenant_id' => $tenant_id->value ?? '',
             'client_id' => $client_id->value ?? '',
             'client_secret' => $client_secret->value ?? '',
-            'replace_admin_login' => $replace_admin_login->value ?? 'false',
+            'replace_admin_login_page' => $replace_admin_login_page->value ?? 'false',
         ];
 
         // Set the view to render for all actions under this controller
