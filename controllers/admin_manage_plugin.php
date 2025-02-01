@@ -25,7 +25,7 @@ class AdminManagePlugin extends AppController
             'page_title',
             Language::_(
                 'MsEntraIdManagePlugin.'
-                . Loader::fromCamelCase($this->action ? $this->action : 'index' . '.page_title',
+                . Loader::fromCamelCase($this->action ? $this->action : 'index' . '.page_title'),
                 true
             )
         );
