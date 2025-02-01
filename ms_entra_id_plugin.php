@@ -52,6 +52,6 @@ class MsEntraIdPlugin extends Plugin
             return;
         }
 
-        return header('Location: /' . WEBDIR . '/plugins/ms_entra_id/login');
+        return header('Location: ' . WEBDIR . 'plugins/ms_entra_id/login');
     }
 }
