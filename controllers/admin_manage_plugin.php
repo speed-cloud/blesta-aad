@@ -46,7 +46,7 @@ class AdminManagePlugin extends AppController
             'tenant_id' => $tenant_id->value ?? '',
             'client_id' => $client_id->value ?? '',
             'client_secret' => $client_secret->value ?? '',
-            'replace_admin_login_page' => $replace_admin_login_page->value ?? 'false',
+            'replace_admin_login_page' => $replace_admin_login_page->value ?? 'off',
         ];
 
         if (!empty($this->post)) {
@@ -63,7 +63,7 @@ class AdminManagePlugin extends AppController
             }
             
             if (!isset($this->post['replace_admin_login_page'])) {
-                $this->post['replace_admin_login_page'] = 'false';
+                $this->post['replace_admin_login_page'] = 'off';
             }
             
             $this->Companies->setSetting(
