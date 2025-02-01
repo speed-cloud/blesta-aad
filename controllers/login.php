@@ -21,7 +21,7 @@ class Login extends AppController
             'client_id' => $client_id,
             'response_type' => 'code',                                                                                                                                        
             'scope' => 'openid email profile',                                                                                                                  
-            'redirect_uri' => $this->base_uri . 'plugin/ms_entra_id/callback',                                                                                                       
+            'redirect_uri' => $this->base_url . 'plugin/ms_entra_id/callback',                                                                                                       
         ]));
     }
 }
