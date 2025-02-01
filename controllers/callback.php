@@ -35,9 +35,6 @@ class Callback extends AppController
 
         $token = json_decode(curl_exec($ch), true)['access_token'];
         curl_close($ch);
-
-        var_dump($token);
-        die;
         
         $ch = curl_init('https://graph.microsoft.com/oidc/userinfo');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
