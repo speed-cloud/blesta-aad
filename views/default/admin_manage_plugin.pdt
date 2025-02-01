@@ -27,8 +27,8 @@
                     </li>
                     <li>
                         <?php
-                        $this->Form->fieldCheckbox('replace_admin_login', 'false', (($replace_admin_login ?? 'false') == 'true'), ['id' => 'replace_admin_login']);
-                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.replace_admin_login', true), 'replace_admin_login', ['class' => 'replace_admin_login']);
+                        $this->Form->fieldCheckbox('replace_admin_login_page', 'false', (($replace_admin_login_page ?? 'false') == 'true'), ['id' => 'replace_admin_login_page']);
+                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.replace_admin_login_page', true), 'replace_admin_login_page', ['class' => 'inline']);
                         ?>
                     </li>
                 </ul>
