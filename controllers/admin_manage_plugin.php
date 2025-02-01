@@ -66,6 +66,30 @@ class AdminManagePlugin extends AppController
                 $this->post['replace_admin_login_page'] = 'false';
             }
 
+            $this->Companies->setSetting(
+                Configure::get('Blesta.company_id'),
+                'MsEntraId.client_id',
+                $this->post['client_id']
+            );
+
+            $this->Companies->setSetting(
+                Configure::get('Blesta.company_id'),
+                'MsEntraId.client_secret',
+                $this->post['client_secret']
+            );
+
+            $this->Companies->setSetting(
+                Configure::get('Blesta.company_id'),
+                'MsEntraId.tenant_id',
+                $this->post['tenant_id']
+            );
+
+            $this->Companies->setSetting(
+                Configure::get('Blesta.company_id'),
+                'MsEntraId.replace_admin_login_page',
+                $this->post['replace_admin_login_page']
+            );
+
             $this->parent->flashMessage('message', Language::_('MsEntraIdManagePlugin.!success.settings_updated', true));
             $this->redirect($this->base_uri . 'settings/company/plugins/manage/' . $this->plugin_id);
         }
