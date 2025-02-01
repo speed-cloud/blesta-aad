@@ -13,8 +13,12 @@ class Login extends AppController
     */
     public function index()
     {
-        $this->redirect('https://login.microsoftonline.com/' . Configure::get('MsEntraId.tenant_id') . '/oauth2/v2.0/authorize?' . http_build_query([
-            'client_id' => Configure::get('MsEntraId.client_id'),
+        // Get settings
+        $tenant_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.tenant_id');
+        $client_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.client_id');
+        
+        $this->redirect('https://login.microsoftonline.com/' . $tenant_id . '/oauth2/v2.0/authorize?' . http_build_query([
+            'client_id' => $client_id,
             'response_type' => 'code',                                                                                                                                        
             'scope' => 'openid email profile',                                                                                                                  
             'redirect_uri' => $this->base_uri . 'plugin/ms_entra_id/callback',                                                                                                       
