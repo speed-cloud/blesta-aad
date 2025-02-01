@@ -43,15 +43,15 @@ class MsEntraIdPlugin extends Plugin
         if (!isset($this->Companies)) {
             Loader::loadComponents($this, ['Companies']);
         }
-        
-        // Get params
+
         $params = $event->getParams();
+        $replace_admin_login_page = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page')->value ?? 'off';
         
         if ($params['controller'] !== 'admin_login'
-            || $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page')->value !== 'on') {
+            || $replace_admin_login_page !== 'on') {
             return;
         }
 
-        return header('Location: ' . WEBDIR . 'plugins/ms_entra_id/login');
+        return header('Location: ' . WEBDIR . 'plugin/ms_entra_id/login');
     }
 }
