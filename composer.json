@@ -1,0 +1,9 @@
+{
+    "name": "speed-cloud/ms_entra_id",
+    "description": "Allow admins to log in to their Blesta account via Microsoft Entra ID.",
+    "license": "GPL-3.0-only",
+    "type": "blesta-plugin",
+    "require": {
+        "blesta/composer-installer": "~1.0"
+    }
+}
