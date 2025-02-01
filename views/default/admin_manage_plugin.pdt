@@ -9,19 +9,19 @@
                 <ul>
                     <li>
                         <?php
-                        $this->Form->fieldText('tenant_id', '', ['id' => 'tenant_id']);
+                        $this->Form->fieldText('tenant_id', $tenant_id, ['id' => 'tenant_id']);
                         $this->Form->label($this->_('MsEntraIdManagePlugin.index.tenant_id', true), 'tenant_id', ['class' => 'inline']);
                         ?>
                     </li>
                     <li>
                         <?php
-                        $this->Form->fieldText('client_id', '', ['id' => 'client_id']);
+                        $this->Form->fieldText('client_id', $client_id, ['id' => 'client_id']);
                         $this->Form->label($this->_('MsEntraIdManagePlugin.index.client_id', true), 'client_id', ['class' => 'client_id']);
                         ?>
                     </li>
                     <li>
                         <?php
-                        $this->Form->fieldCheckbox('client_secret', '', ['id' => 'client_secret']);
+                        $this->Form->fieldPassword('client_secret', $client_secret, ['id' => 'client_secret']);
                         $this->Form->label($this->_('MsEntraIdManagePlugin.index.client_secret', true), 'client_secret', ['class' => 'inline']);
                         ?>
                     </li>
