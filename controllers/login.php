@@ -14,8 +14,8 @@ class Login extends AppController
     public function index()
     {
         // Get settings
-        $tenant_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.tenant_id');
-        $client_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.client_id');
+        $tenant_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.tenant_id')->value ?? '';
+        $client_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.client_id')->value ?? '';
         
         $this->redirect('https://login.microsoftonline.com/' . $tenant_id . '/oauth2/v2.0/authorize?' . http_build_query([
             'client_id' => $client_id,
