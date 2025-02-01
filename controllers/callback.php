@@ -13,52 +13,46 @@ class Callback extends AppController
     */
     public function index()
     {
-        $code = $this->get['code'] ?? null;
-        if (!$code) {
-          return;
-        }
-      
+        $this->uses(['Record']);
+        
         $tenant_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.tenant_id')->value ?? '';
         $client_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.client_id')->value ?? '';
         $client_secret = $this->Companies->getSetting($this->company_id, 'MsEntraId.client_secret')->value ?? '';
 
-        $token = $this->makeRequest('POST', 'https://login.microsoftonline.com/' . $tenant_id . '/oauth2/v2.0/token', [], [
-            'grant_type' => 'authorization_code',
-            'client_id' => $client_id,
-            'client_secret' => $client_secret,
-            'code' => $code,
-            'redirect_uri' => $this->base_url . 'plugin/ms_entra_id/callback'
-        ])['access_token'];
+        $ch = curl_init('https://login.microsoftonline.com/' . $tenant_id . '/oauth2/v2.0/token');
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => http_build_query([
+                'grant_type' => 'authorization_code',
+                'client_id' => $client_id,
+                'client_secret' => $client_secret,
+                'code' => $this->get['code'],
+                'redirect_uri' => $this->base_url . 'plugin/ms_entra_id/callback'
+            ]),
+        ]);
+        
+        $token = json_decode(curl_exec($ch))->access_token;
+        curl_close($ch);
 
-        var_dump($token);
-        die;
+        if (!$token) {
+            return $this->redirect($this->base_uri . 'plugin/ms_entra_id/login');
+        }
         
         $ch = curl_init('https://graph.microsoft.com/oidc/userinfo');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $token]);
-
-        $email = json_decode(curl_exec($ch), true)['email'];
-        curl_close($ch);
-    }
-
-    /**
-     * Make a request to Microsoft Entra ID.
-     * 
-     * @param string $method Request method used 
-     * @param string $url URL called
-     * @param array 
-     */
-    private function makeRequest($method, $url, $headers = [], $body = [])
-    {
-        $ch = curl_init($url);
         curl_setopt_array($ch, [
-            CURLOPT_CUSTOMREQUEST => $method,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_POSTFIELDS => http_build_query($body),
+            CURLOPT_HTTPHEADER => ['Authorization: Bearer ' . $token]
         ]);
 
-        $response = json_decode(curl_exec($ch), true);
+        $email = json_decode(curl_exec($ch))->email;
         curl_close($ch);
+
+        $staff = $this->Record->select()
+            ->from('staff')
+            ->where('email', '=', $email)
+            ->fetch();
+
+        var_dump($staff);
     }
 }
