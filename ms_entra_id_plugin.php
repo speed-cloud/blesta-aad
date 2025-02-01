@@ -39,7 +39,14 @@ class MsEntraIdPlugin extends Plugin
      */
     public function on_admin_login($event)
     {
-        $this->logger->log($event);
+        // Get params
+        $params = $event->getParams();
+
+        if ($params['controller'] !== 'admin_login') {
+            return;
+        }
+
+        // TODO: check and redirect
     }
     
 }
