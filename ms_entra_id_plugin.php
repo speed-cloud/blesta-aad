@@ -14,7 +14,6 @@ class MsEntraIdPlugin extends Plugin
     public function __construct()
     {
         $this->loadConfig(dirname(__FILE__) . DS . 'config.json');
-
         Language::loadLang('ms_entra_id', null, dirname(__FILE__) . DS . 'language' . DS);
     }
 
