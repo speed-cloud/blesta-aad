@@ -16,7 +16,7 @@ class AdminManagePlugin extends AppController
         // Require login
         $this->parent->requireLogin();
 
-        Language::loadLang('ms_entra_id', null, PLUGINDIR . 'ms_entra_id' . DS . 'language' . DS);
+        Language::loadLang('ms_entra_id_manage_plugin', null, PLUGINDIR . 'ms_entra_id' . DS . 'language' . DS);
 
         $this->plugin_id = $this->get[0] ?? null;
 
