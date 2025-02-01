@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
-    "name": "Microsoft Entra ID",
-    "description": "",
+    "name": "MsEntraId.name",
+    "description": "MsEntraId.description",
     "authors": [
         {
             "name": "SPEED CLOUD",
