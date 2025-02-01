@@ -13,7 +13,7 @@ class Callback extends AppController
     */
     public function index()
     {
-        $this->uses(['Record']);
+        $this->uses(['Record', 'Session']);
         
         $tenant_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.tenant_id')->value ?? '';
         $client_id = $this->Companies->getSetting($this->company_id, 'MsEntraId.client_id')->value ?? '';
@@ -53,6 +53,11 @@ class Callback extends AppController
             ->where('email', '=', $email)
             ->fetch();
 
-        var_dump($staff);
+        if ($staff) {
+            $this->Session->write('blesta_staff_id', $staff->id);
+            $this->redirect($this->base_uri . 'admin');
+        } else {
+            $this->redirect($this->base_uri);
+        } 
     }
 }
