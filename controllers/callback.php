@@ -49,15 +49,17 @@ class Callback extends AppController
         curl_close($ch);
 
         $staff = $this->Record->select()
-            ->from('staff')
-            ->where('email', '=', $email)
-            ->fetch();
-
-        if ($staff) {
-            $this->Session->write('blesta_staff_id', $staff->id);
-            $this->redirect($this->base_uri . 'admin');
-        } else {
-            $this->redirect($this->base_uri);
-        } 
+			->from('staff')
+			->where('email', '=', $email)
+			->fetch();
+        
+        if (!$staff) {
+            return $this->redirect($this->base_uri);
+        }
+        
+        $this->Session->write('blesta_id', $staff->user_id);
+        $this->Session->write('blesta_company_id', 0);
+        $this->Session->write('blesta_staff_id', $staff->id);
+        $this->redirect($this->admin_uri);
     }
 }
