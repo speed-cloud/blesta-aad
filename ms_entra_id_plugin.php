@@ -46,11 +46,9 @@ class MsEntraIdPlugin extends Plugin
         
         // Get params
         $params = $event->getParams();
-
-        var_dump($this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page'));
         
         if ($params['controller'] !== 'admin_login'
-            || $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page') !== 'true') {
+            || $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page')->value !== 'true') {
             return;
         }
 
