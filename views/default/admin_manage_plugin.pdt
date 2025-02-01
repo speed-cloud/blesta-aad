@@ -27,6 +27,7 @@
                     </li>
                     <li>
                         <?php
+                        var_dump($replace_admin_login_page);
                         $this->Form->fieldCheckbox('replace_admin_login_page', null, (($replace_admin_login_page ?? 'off') == 'on'), ['id' => 'replace_admin_login_page']);
                         $this->Form->label($this->_('MsEntraIdManagePlugin.index.replace_admin_login_page', true), 'replace_admin_login_page', ['class' => 'inline']);
                         ?>
