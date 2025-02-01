@@ -39,10 +39,8 @@ class MsEntraIdPlugin extends Plugin
      */
     public function on_admin_login($event)
     {
-        if (!isset($this->Companies)) {
-            Loader::loadComponents($this, ['Companies']);
-        }
-
+        Loader::loadComponents($this, ['Companies', 'Session']);
+        
         $params = $event->getParams();
         $replace_admin_login_page = $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page');
         
