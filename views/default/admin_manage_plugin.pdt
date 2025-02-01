@@ -16,7 +16,7 @@
                     <li>
                         <?php
                         $this->Form->fieldText('client_id', $client_id, ['id' => 'client_id']);
-                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.client_id', true), 'client_id', ['class' => 'client_id']);
+                        $this->Form->label($this->_('MsEntraIdManagePlugin.index.client_id', true), 'client_id', ['class' => 'inline']);
                         ?>
                     </li>
                     <li>
