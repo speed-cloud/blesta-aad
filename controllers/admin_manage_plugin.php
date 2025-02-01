@@ -49,6 +49,27 @@ class AdminManagePlugin extends AppController
             'replace_admin_login_page' => $replace_admin_login_page->value ?? 'false',
         ];
 
+        if (!empty($this->post)) {
+            if (!isset($this->post['tenant_id'])) {
+                $this->post['tenant_id'] = '';
+            }
+            
+            if (!isset($this->post['client_id'])) {
+                $this->post['client_id'] = '';
+            }
+
+            if (!isset($this->post['client_secret'])) {
+                $this->post['client_secret'] = '';
+            }
+            
+            if (!isset($this->post['replace_admin_login_page'])) {
+                $this->post['replace_admin_login_page'] = 'false';
+            }
+
+            $this->parent->flashMessage('message', Language::_('MsEntraIdManagePlugin.!success.settings_updated', true));
+            $this->redirect($this->base_uri . 'settings/company/plugins/manage/' . $this->plugin_id);
+        }
+
         // Set the view to render for all actions under this controller
         $this->view->setView(null, 'MsEntraId.default');
 
