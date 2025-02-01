@@ -11,7 +11,6 @@ use Blesta\Core\Util\Common\Traits\Container;
  */
 class MsEntraIdPlugin extends Plugin
 {
-
     public function __construct()
     {
         $this->loadConfig(dirname(__FILE__) . DS . 'config.json');
@@ -41,14 +40,18 @@ class MsEntraIdPlugin extends Plugin
      */
     public function on_admin_login($event)
     {
+        if (!isset($this->Companies)) {
+            Loader::loadComponents($this, ['Companies']);
+        }
+        
         // Get params
         $params = $event->getParams();
 
-        if ($params['controller'] !== 'admin_login') {
+        if ($params['controller'] !== 'admin_login'
+            || $this->Companies->getSetting(Configure::get('Blesta.company_id'), 'MsEntraId.replace_admin_login_page') !== 'true') {
             return;
         }
 
-        // TODO: check and redirect
+        return header('Location: /' . WEBDIR . '/plugins/ms_entra_id/login');
     }
-    
 }
