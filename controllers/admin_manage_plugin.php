@@ -65,6 +65,12 @@ class AdminManagePlugin extends AppController
             if (!isset($this->post['replace_admin_login_page'])) {
                 $this->post['replace_admin_login_page'] = 'false';
             }
+            
+            $this->Companies->setSetting(
+                Configure::get('Blesta.company_id'),
+                'MsEntraId.tenant_id',
+                $this->post['tenant_id']
+            );
 
             $this->Companies->setSetting(
                 Configure::get('Blesta.company_id'),
@@ -76,12 +82,6 @@ class AdminManagePlugin extends AppController
                 Configure::get('Blesta.company_id'),
                 'MsEntraId.client_secret',
                 $this->post['client_secret']
-            );
-
-            $this->Companies->setSetting(
-                Configure::get('Blesta.company_id'),
-                'MsEntraId.tenant_id',
-                $this->post['tenant_id']
             );
 
             $this->Companies->setSetting(
