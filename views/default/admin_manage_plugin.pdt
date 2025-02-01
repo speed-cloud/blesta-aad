@@ -1,5 +1,7 @@
 
         <?php
+        $this->Widget->clear();
+        $this->Widget->create($this->_('MsEntraIdManagePlugin.index.boxtitle_manage', true));
         $this->Form->create();
         ?>
         <div class="inner">
